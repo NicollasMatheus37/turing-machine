@@ -1,1 +1,122 @@
-<p>turing-machine works!</p>
+<div class="row">
+    <div class="col nes-container with-title is-rounded ">
+        <p class="title">Símbolos</p>
+
+        <div class="lists row">
+            <ul class="nes-list is-disc">
+                <ng-container *ngFor="let symbol of symbols; let i = index">
+                    <li (click)="removeSymbol(i)">{{ symbol }}</li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <div class="nes-field is-inline">
+            <input type="text" id="symbol_field" class="nes-input col-md-3" [(ngModel)]="symbolInputValue">
+            <button type="button" class="nes-btn is-success ml-2" (click)="submitSymbol()">inserir</button>
+        </div>
+
+    </div>
+
+    <div class="col nes-container with-title is-rounded ">
+        <p class="title">Estados</p>
+
+        <div class="lists row">
+            <ul class="nes-list is-disc">
+                <ng-container *ngFor="let state of states; let i = index">
+                    <li (click)="removeState(i)">{{ state }}</li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <button type="button" class="nes-btn is-success " (click)="createState()">Criar novo estado</button>
+
+    </div>
+</div>
+<br>
+<div class="col-md-12 nes-container with-title is-centered is-rounded mt-1">
+    <p class="title">Ações</p>
+    <div class="nes-table-responsive offset-md-1 col-md-10">
+        <table class="nes-table is-bordered is-centered">
+            <thead>
+                <tr>
+                    <th>Estado</th>
+                    <th>Símbolo de entrada</th>
+                    <th>Proximo estado</th>
+                    <th>Símbolo de saída</th>
+                    <th>Direção</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <ng-container *ngFor=" let action of actions; let j = index">
+                    <tr>
+                        <td>
+                            <div class="nes-select">
+                                <select [(ngModel)]="action.state" required>
+                                    <option value="" disabled selected hidden>Selecione...</option>
+                                    <ng-container *ngFor="let state of states; let i = index">
+                                        <option [value]="i">{{ state }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="nes-select">
+                                <select [(ngModel)]="action.entrySimbol" required>
+                                    <option value="" disabled selected hidden>Selecione...</option>
+                                    <ng-container *ngFor="let symbol of symbols; let i = index">
+                                        <option [value]="i">{{ symbol }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="nes-select">
+                                <select [(ngModel)]="action.nextSate" required>
+                                    <option value="" disabled selected hidden>Selecione...</option>
+                                    <ng-container *ngFor="let state of states; let i = index">
+                                        <option [value]="i">{{ state }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="nes-select">
+                                <select [(ngModel)]="action.writeSimbol" required>
+                                    <option value="" disabled selected hidden>Selecione...</option>
+                                    <ng-container *ngFor="let symbol of symbols; let i = index">
+                                        <option [value]="i">{{ symbol }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="nes-select">
+                                <select [(ngModel)]="action.direction" required>
+                                    <option value="" disabled selected hidden>Selecione...</option>
+                                    <ng-container *ngFor="let direction of directions; let i = index">
+                                        <option [value]="i">{{ direction }}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- close -->
+                            <a href="javascript:;" [hidden]="j == 0">
+                                <i class="nes-icon close" (click)="removeAction(j)"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button type="button" class="nes-btn is-success" (click)="createAction()">Criar nova ação</button>
+</div>
