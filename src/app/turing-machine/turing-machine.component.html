@@ -100,7 +100,7 @@
 
                         <td>
                             <div class="nes-select">
-                                <select [(ngModel)]="action.direction" required>
+                                <select [(ngModel)]="action.direction" (ngModelChange)="checkIfIsEnd(j)" required>
                                     <option value="" disabled selected hidden>Selecione...</option>
                                     <ng-container *ngFor="let direction of directions; let i = index">
                                         <option [value]="direction">{{ direction }}</option>

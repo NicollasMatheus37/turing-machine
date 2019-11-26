@@ -8,7 +8,7 @@ import { MachineActions } from './helpers';
 })
 export class TuringMachineComponent implements OnInit {
 
-	@Input() actions;
+	@Input() actions: Array<MachineActions>;
 	symbolInputValue: string = null;
 	stateInputValue: string = null;
 	symbols = ['_', 'x'];
@@ -53,4 +53,12 @@ export class TuringMachineComponent implements OnInit {
 		if (i) this.actions.splice(i, 1);
 	}
 
+	checkIfIsEnd(i) {
+		if(this.actions.length > 0 && this.actions[i].direction == 'PARA') {
+			this.actions[i].entrySimbol = "";
+			this.actions[i].nextSate = "";
+			this.actions[i].state = "";
+			this.actions[i].writeSimbol = "";
+		}
+	}
 }
