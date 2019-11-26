@@ -4,5 +4,4 @@ export class MachineActions {
     nextSate: string | number = "";
     writeSimbol: string = "";
     direction: string = "";
-    isEndState: boolean = false;
 }

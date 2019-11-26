@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TuringMachineComponent } from './turing-machine/turing-machine.component';
 import { CommonModule } from '@angular/common';
+import { RibbonComponent } from './ribbon/ribbon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TuringMachineComponent
+    TuringMachineComponent,
+    RibbonComponent
   ],
   imports: [
     BrowserModule,
