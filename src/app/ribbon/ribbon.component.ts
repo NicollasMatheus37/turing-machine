@@ -11,65 +11,78 @@ export class RibbonComponent implements OnInit {
 
     ribbon;
     currentState;
+    ribbonSpeed: number = 800;
 
     constructor() { }
 
     ngOnInit() { }
 
 
-    startProcess() {
+    async startProcess() {
+        if (this.ribbon) {
 
-        this.currentState = '->';
-        let ribbonSymbols: Array<string> = this.ribbon.split('');
+            console.log(this.actions);
 
-        for (let i = 0; i < ribbonSymbols.length;) {
+            this.currentState = '->';
+            let ribbonSymbols: Array<string> = this.ribbon.split('');
+            let isEnd: boolean = false;
+            let i = 0;
 
-            let entrySimbol = ribbonSymbols[i];
 
-            // filtra as ações do estado e a ação correta de acordo com a entrada
-            let stateActions = this.getActionsByState();
-            let action = this.getActionBySymbol(stateActions, entrySimbol);
+            while (!isEnd) {
 
-            if (action) {
-                // se for estado final para a maquina
-                if (action.direction == 'PARA') {
-                    return "Fim";
+                // filtra as ações do estado e a ação correta de acordo com a entrada
+                let stateActions = this.getActionsByState();
+                let action = this.getActionBySymbol(stateActions, ribbonSymbols[i]);
 
-                } else {
+                if (action) {
 
-                    // atualiza o estado
-                    this.currentState = action.nextSate;
+                    // se for estado final para a maquina
+                    if (action.direction == 'PARA') {
+                        isEnd = true;
+                        return "Fim";
 
-                    // escreve o simbolo na fita
-                    console.log("estado: " + this.currentState + ' index:' + i + ' Símbolo:' + action.writeSimbol);
-                    ribbonSymbols[i] = action.writeSimbol;
-                    console.log('Fita:' + ribbonSymbols);
+                    } else {
 
-                    // verifica a direção e move o cabeçote
-                    if (action.direction == 'E') {
-                        if(i == 0) {
-                            ribbonSymbols.unshift('_');
+                        // atualiza o estado
+                        this.currentState = action.nextSate;
+
+                        // escreve o simbolo na fita
+                        console.log("estado: " + this.currentState + ' index:' + i + ' Prox Símbolo:' + action.writeSimbol + ' Sim. Atual:' + ribbonSymbols[i]);
+                        ribbonSymbols[i] = action.writeSimbol;
+                        console.log('Fita:' + ribbonSymbols);
+
+                        // verifica a direção e move o cabeçote
+                        if (action.direction === 'E') {
+                            if (i == 0) {
+                                ribbonSymbols.unshift('_');
+                            }
+                            i--;
+
                         }
-                        i--;
-
-                    } else if (action.direction == 'D') {
-                        if(i == ribbonSymbols.length) {
-                            ribbonSymbols.push('_');
+                        if (action.direction === 'D') {
+                            if (i == ribbonSymbols.length) {
+                                ribbonSymbols.push('_');
+                            }
+                            i++;
                         }
-                        i++;
-                        
+
                     }
-
+                    
+                } else {
+                    console.error("ação nao encontrada");
+                    return "Erro";
                 }
-            } else {
-                console.error("ação nao encontrada");
-                return "Erro";
+                await this.delay(this.ribbonSpeed);
             }
+
 
         }
 
     }
-
+    delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+    }
     getActionBySymbol(actions: Array<MachineActions>, simbol) {
         //retorna ação a ser executada
         return actions.find((action) => action.entrySimbol == simbol);
