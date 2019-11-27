@@ -21,9 +21,11 @@
                     <span *ngIf="symbol != '->' && symbol != '*'">{{ symbol }}</span>
                 </div>
                 <ng-container *ngIf="i == index && !isEnd">
+                    <!-- Copyright Nintendo -->
                     <i class="nes-mario jump" style="font-size: 20px;"></i>
                 </ng-container>
                 <ng-container *ngIf="i == index && isEnd">
+                    <!-- Copyright Nintendo -->
                     <i class="nes-mario" style="font-size: 20px;"></i>
                 </ng-container>
             </div>
