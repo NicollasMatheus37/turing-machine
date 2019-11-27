@@ -9,9 +9,14 @@ export class RibbonComponent implements OnInit {
 
     @Input() actions: Array<MachineActions>;
 
+    // valor inserido para a fita
     ribbon;
+
+    // variavel que detem o estado atual durante o processo
     currentState;
-    ribbonSpeed: number = 800;
+
+    // propriedade respoansável pela velocidade do cabeçote;
+    ribbonSpeed: number = 400;
 
     constructor() { }
 
@@ -22,10 +27,14 @@ export class RibbonComponent implements OnInit {
         if (this.ribbon) {
 
             console.log(this.actions);
-            
+
+            // atribui o estado inicial
             this.currentState = '->';
+
+            // prepara o array com os item da fita mantendo simbolo de estado inicial no começo
             let ribbonSymbols: Array<string> = this.ribbon.split('');
             ribbonSymbols.unshift('->');
+            
             let isEnd: boolean = false;
             let i = 0;
 
@@ -39,41 +48,41 @@ export class RibbonComponent implements OnInit {
                 if (action) {
 
                     // se for estado final para a maquina
+
+                    // atualiza o estado
+                    this.currentState = action.nextSate;
+
+                    // escreve o simbolo na fita
+                    console.log("estado: " + this.currentState + ' index:' + i + ' Prox Símbolo:' + action.writeSimbol + ' Sim. Atual:' + ribbonSymbols[i]);
+                    ribbonSymbols[i] = action.writeSimbol;
+                    console.log('Fita:' + ribbonSymbols);
+
+                    // verifica a direção e move o cabeçote
                     if (action.direction == 'PARA') {
                         isEnd = true;
                         return "Fim";
 
-                    } else {
+                    }
 
-                        // atualiza o estado
-                        this.currentState = action.nextSate;
-
-                        // escreve o simbolo na fita
-                        console.log("estado: " + this.currentState + ' index:' + i + ' Prox Símbolo:' + action.writeSimbol + ' Sim. Atual:' + ribbonSymbols[i]);
-                        ribbonSymbols[i] = action.writeSimbol;
-                        console.log('Fita:' + ribbonSymbols);
-
-                        // verifica a direção e move o cabeçote
-                        if (action.direction === 'E') {
-                            if (i == 0) {
-                                ribbonSymbols.unshift('_');
-                            }
-                            i--;
-
+                    if (action.direction === 'E') {
+                        if (i == 0) {
+                            ribbonSymbols.unshift('_');
                         }
-                        if (action.direction === 'D') {
-                            if (i == ribbonSymbols.length -1) {
-                                ribbonSymbols.push('_');
-                            }
-                            i++;
-                        }
+                        i--;
 
                     }
-                    
+
+                    if (action.direction === 'D') {
+                        if (i == ribbonSymbols.length - 1) {
+                            ribbonSymbols.push('_');
+                        }
+                        i++;
+                    }
+
                 } else {
                     console.error("ação nao encontrada");
-                    console.log('Fita:' + ribbonSymbols);
-                    
+                    console.log('Fita:' + ribbonSymbols + ' Index:' + i);
+
                     return "Erro";
                 }
                 await this.delay(this.ribbonSpeed);
@@ -83,9 +92,11 @@ export class RibbonComponent implements OnInit {
         }
 
     }
+
     delay(ms: number) {
-        return new Promise( resolve => setTimeout(resolve, ms) );
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
+
     getActionBySymbol(actions: Array<MachineActions>, simbol) {
         //retorna ação a ser executada
         return actions.find((action) => action.entrySimbol == simbol);

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MachineActions } from './helpers';
+import { MachineActions, MultiplicationExample } from './helpers';
 
 @Component({
 	selector: 'app-turing-machine',
@@ -9,12 +9,12 @@ import { MachineActions } from './helpers';
 export class TuringMachineComponent implements OnInit {
 
 	@Input() actions: Array<MachineActions>;
+	@Input() symbols: Array<string> = ['->','_'];
+	@Input() states: Array<string> = ['->', '0'];
 	symbolInputValue: string = null;
 	stateInputValue: string = null;
-	symbols = ['_', 'x'];
-	states = ['->', '0'];
 	directions = ['E', 'D', 'PARA'];
-
+	
 	constructor() { }
 
 	ngOnInit() {
@@ -38,7 +38,7 @@ export class TuringMachineComponent implements OnInit {
 	}
 
 	removeSymbol(i) {
-		if (i != 0) this.symbols.splice(i, 1);
+		if (i > 1) this.symbols.splice(i, 1);
 	}
 
 	removeState(i) {
@@ -53,12 +53,4 @@ export class TuringMachineComponent implements OnInit {
 		if (i) this.actions.splice(i, 1);
 	}
 
-	checkIfIsEnd(i) {
-		if(this.actions.length > 0 && this.actions[i].direction == 'PARA') {
-			this.actions[i].entrySimbol = "";
-			this.actions[i].nextSate = "";
-			this.actions[i].state = "";
-			this.actions[i].writeSimbol = "";
-		}
-	}
 }
