@@ -22,9 +22,10 @@ export class RibbonComponent implements OnInit {
         if (this.ribbon) {
 
             console.log(this.actions);
-
+            
             this.currentState = '->';
             let ribbonSymbols: Array<string> = this.ribbon.split('');
+            ribbonSymbols.unshift('->');
             let isEnd: boolean = false;
             let i = 0;
 
@@ -61,7 +62,7 @@ export class RibbonComponent implements OnInit {
 
                         }
                         if (action.direction === 'D') {
-                            if (i == ribbonSymbols.length) {
+                            if (i == ribbonSymbols.length -1) {
                                 ribbonSymbols.push('_');
                             }
                             i++;
@@ -71,6 +72,8 @@ export class RibbonComponent implements OnInit {
                     
                 } else {
                     console.error("ação nao encontrada");
+                    console.log('Fita:' + ribbonSymbols);
+                    
                     return "Erro";
                 }
                 await this.delay(this.ribbonSpeed);
