@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col nes-container with-title is-rounded ">
-        <p class="title">Símbolos</p>
+        
+        <p class="title">
+            <a href="#" class="nes-badge is-icon ml-4">
+                <span class="is-error"><i class="nes-icon heart is-small"></i></span>
+                <span class="is-dark">Símbolos</span>
+            </a>
+        </p>
 
         <div class="lists row">
             <ul class="nes-list is-disc">
@@ -9,16 +15,22 @@
                 </ng-container>
             </ul>
         </div>
-
+        
         <div class="nes-field is-inline">
             <input type="text" id="symbol_field" class="nes-input col-md-3" [(ngModel)]="symbolInputValue">
-            <button type="button" class="nes-btn is-success ml-2" (click)="submitSymbol()">inserir</button>
+            <button type="button" class="nes-btn is-success ml-2" (click)="submitSymbol()">Inserir novo símbolo</button>
         </div>
+        <span class="nes-text row mt-2"><small>Insira os simbolos utilizados na maquina. Para remover um símbolo clique nele</small></span>
 
     </div>
 
     <div class="col nes-container with-title is-rounded ">
-        <p class="title">Estados</p>
+        <p class="title">
+            <a href="#" class="nes-badge is-icon ml-4">
+                <span class="is-error"><i class="nes-icon heart is-small"></i></span>
+                <span class="is-dark">Estados</span>
+            </a>
+        </p>
 
         <div class="lists row">
             <ul class="nes-list is-disc">
@@ -30,14 +42,21 @@
 
         <div class="nes-field is-inline">
             <input type="text" id="symbol_field" class="nes-input col-md-3" [(ngModel)]="stateInputValue">
-            <button type="button" class="nes-btn is-success " (click)="createState()">Criar novo estado</button>
+            <button type="button" class="nes-btn is-success ml-2" (click)="createState()">Inserir novo estado</button>
         </div>
+
+        <span class="nes-text row mt-2"><small>Insira os estados utilizados na maquina. Para remover um estado clique nele</small></span>
 
     </div>
 </div>
 <br>
 <div class="col-md-12 nes-container with-title is-centered is-rounded mt-1">
-    <p class="title">Ações</p>
+    <p class="title">
+        <a href="#" class="nes-badge is-icon ml-4">
+            <span class="is-error"><i class="nes-icon heart is-small"></i></span>
+            <span class="is-dark">Ações</span>
+        </a>
+    </p>
     <div class="nes-table-responsive offset-md-1 col-md-10">
         <table class="nes-table is-bordered is-centered">
             <thead>
