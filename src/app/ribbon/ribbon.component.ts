@@ -81,8 +81,8 @@ export class RibbonComponent implements OnInit {
                     }
 
                 } else {
-                    return "Erro";
                     alert('Não foi encontrada ação cadastrada para estado: ' + this.currentState + ', entrada:' + this.ribbonSymbols[this.index]);
+                    return "Erro";
                 }
                 await this.delay(this.ribbonSpeed);
             }
