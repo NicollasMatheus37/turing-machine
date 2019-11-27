@@ -1,4 +1,40 @@
-<div class="nes-field is-inline">
-    <input type="text" id="symbol_field" class="nes-input col-md-3" [(ngModel)]="ribbon">
+<div class="nes-field is-inline col-6 offset-3 mt-3">
+    <span class="h3"><i class="fas fa-arrow-right mr-2"></i></span>
+    <input type="text" id="symbol_field" class="nes-input col-md-12" [(ngModel)]="ribbon">
     <button type="button" class="nes-btn is-success ml-2" (click)="startProcess()">processar</button>
 </div>
+
+<div class="mx-5 my-3">
+    <span class="h4">Estados: {{ format(stateRegister) }}</span>
+</div>
+
+<div>
+    <div class="row">
+        <ng-container *ngFor="let symbol of ribbonSymbols; let i = index">
+            <div class="col-1">
+                <div class="text-center" [style.opacity]="isEnd ? 0 : 1">
+                    <i class="nes-icon coin is-large" [style.opacity]="i != index ? 0 : 1" style="font-size: 20px;"></i>
+                </div>
+                <div class="nes-container is-rounded is-dark mt-2 text-center">
+                    <span *ngIf="symbol == '*'"><i class="fas fa-circle"></i></span>
+                    <span *ngIf="symbol == '->'"><i class="fas fa-arrow-right"></i></span>
+                    <span *ngIf="symbol != '->' && symbol != '*'">{{ symbol }}</span>
+                </div>
+                <ng-container *ngIf="i == index && !isEnd">
+                    <i class="nes-mario jump" style="font-size: 20px;"></i>
+                </ng-container>
+                <ng-container *ngIf="i == index && isEnd">
+                    <i class="nes-mario" style="font-size: 20px;"></i>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="blank-footer text-center mt-5">
+    <ng-container *ngIf="isEnd">
+        <span class="h4"> Você terminou!<i class="nes-icon trophy is-large"></i></span>
+    </ng-container>
+</div>
+
+<div class="blank-footer"></div>

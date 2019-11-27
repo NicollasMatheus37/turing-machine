@@ -7,36 +7,7 @@ import { MachineActions } from './turing-machine/helpers';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'maquina-de-turing';
-  actions = [new MachineActions];
-  // actions = [
-  //   {
-  //     state: '->',
-  //     entrySimbol: 'x',
-  //     nextSate: '0',
-  //     writeSimbol: '_',
-  //     direction: 'D',
-  //   },
-  //   {
-  //     state: '0',
-  //     entrySimbol: 'x',
-  //     nextSate: '0',
-  //     writeSimbol: '_',
-  //     direction: 'D',
-  //   },
-  //   {
-  //     state: '0',
-  //     entrySimbol: '_',
-  //     nextSate: '->',
-  //     writeSimbol: '_',
-  //     direction: 'E',
-  //   },
-  //   {
-  //     state: '->',
-  //     entrySimbol: '_',
-  //     nextSate: '->',
-  //     writeSimbol: 'X',
-  //     direction: 'PARA',
-  //   },
-  // ];
+
+  title = 'Máquina de Turing';
+
 }

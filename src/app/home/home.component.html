@@ -1,0 +1,41 @@
+<app-navbar (home)="goHome()" [hasRun]="creatingOwnMachine" (run)="run()"></app-navbar>
+
+<ng-container *ngIf="onHome">
+    <div class="container is-centered" style="margin-top: 50px;">
+        <div class="col-6 offset-3">
+            <button type="button" class="nes-btn col-12 my-3" (click)="useExample()">
+                <i class="snes-jp-logo"></i><br>
+                <span class="ml-3 h4">Utilizar exemplo</span>
+            </button>
+            <button type="button" class="nes-btn is-primary col-12 my-3" (click)="createOwn()">
+                <i class="nes-logo"></i><br>
+                <span class="ml-3 h4">Criar sua própria tabela de ação</span>
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="example">
+    <div class="container is-centered" style="margin-top: 50px;">
+        <div class="col-6 offset-3">
+            <button type="button" class="nes-btn col-12 my-3" (click)="setSubtraction()">
+                    <i class="nes-icon coin flip"></i>
+                <span class="ml-3 h4">Subtração</span>
+            </button>
+            <button type="button" class="nes-btn is-primary col-12 my-3" (click)="setMultiplication()">
+                    <i class="nes-icon coin flip"></i>
+                <span class="ml-3 h4">Multiplicação</span>
+            </button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="creatingOwnMachine">
+    <div class="nes-container is-rounded is-centered">
+        <app-turing-machine [actions]="actions" [symbols]="symbols" [states]="states"></app-turing-machine>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="running">
+    <ribbon [actions]="actions"></ribbon>
+</ng-container>

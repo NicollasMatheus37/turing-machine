@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { TuringMachineComponent } from './turing-machine/turing-machine.component';
 import { CommonModule } from '@angular/common';
 import { RibbonComponent } from './ribbon/ribbon.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TuringMachineComponent,
-    RibbonComponent
+    RibbonComponent,
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

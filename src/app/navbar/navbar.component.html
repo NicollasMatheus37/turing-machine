@@ -1,0 +1,17 @@
+<div class="nes-container is-rounded is-dark row">
+    <div class="message-left row col-10">
+
+        <!-- Copyright Nintendo -->
+        <div style="transform: scaleX(-1)" (click)="toHome()">
+            <i class="nes-bulbasaur"></i>
+        </div>
+
+        <!-- Balloon -->
+        <div class="nes-balloon from-left">
+            <p style="color: black;">Bulba Bulbasaur</p>
+        </div>
+    </div>
+    <div class="col-2" *ngIf="hasRun">
+        <button type="button" class="nes-btn is-success big-button" (click)="runMachine()">Calcular</button>
+    </div>
+</div>
